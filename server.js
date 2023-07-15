@@ -48,7 +48,7 @@ app.post("/api/notes", (req, res) => {
 
     const response = {
       status: "success",
-      body: notesData,
+      body: newNote,
     };
 
     console.log(response.status);
