@@ -34,7 +34,7 @@ app.post("/api/notes", (req, res) => {
     const newNote = {
       title,
       text,
-      note_id: uuidv4(),
+      id: uuidv4(),
     };
 
     // Add to existing database
@@ -55,6 +55,32 @@ app.post("/api/notes", (req, res) => {
   } else {
     res.status(500).json("Error adding note");
   }
+});
+
+// Delete request for deleting a note
+app.delete("/api/notes/:id", (req, res) => {
+  console.info(`${req.method} request received`);
+
+  const noteId = req.path.split("/")[3];
+  for (let note of notesData) {
+    if (noteId === note.id) {
+      let index = notesData.indexOf(note);
+      notesData.splice(index, 1);
+      fs.writeFileSync("./db/db.json", JSON.stringify(notesData), (error) =>
+        error
+          ? console.error("Error updating data after delete: ", error)
+          : console.log("Data udpated successfully")
+      );
+    }
+  }
+
+  const response = {
+    status: "success",
+    body: notesData,
+  };
+
+  console.log(response.status);
+  res.status(201).json(response);
 });
 
 app.listen(PORT, () => console.log(`Listening at http://localhost:${PORT}`));
