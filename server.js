@@ -5,7 +5,8 @@ let notesData = require("./db/db.json");
 const { v4: uuidv4 } = require("uuid");
 const { raw } = require("express");
 
-const PORT = 3001;
+// If listening on Heroku, use the Heroku port, else use local port
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 
