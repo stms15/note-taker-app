@@ -1,6 +1,1 @@
-[
-    {
-        "title":"Test Title",
-        "text":"Test text"
-    }
-]
+[{"title":"Test Title","text":"Test text"},{"title":"New Note","text":"This is my new note.","note_id":"fadd6198-3b26-4d24-8fd7-34aac578bf7a"}]
